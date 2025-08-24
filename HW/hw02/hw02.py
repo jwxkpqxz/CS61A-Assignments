@@ -13,6 +13,10 @@ HW_SOURCE_FILE=__file__
 
 
 def product(n, term):
+    total=1
+    for i in range(1,n+1):
+        total=total*term(i)
+    return total
     """Return the product of the first n terms in a sequence.
 
     n: a positive integer
@@ -32,7 +36,7 @@ def product(n, term):
     162
     """
     "*** YOUR CODE HERE ***"
-
+print(product(5, square))
 
 def accumulate(fuse, start, n, term):
     """Return the result of fusing together the first n terms in a sequence 
@@ -54,6 +58,14 @@ def accumulate(fuse, start, n, term):
     19
     """
     "*** YOUR CODE HERE ***"
+    total=start
+    k=1
+    while k<=n:
+        total=fuse(total,term(k))
+        k=k+1
+    return total
+print(accumulate(add, 0, 5, identity))
+
 
 
 def summation_using_accumulate(n, term):
@@ -68,7 +80,7 @@ def summation_using_accumulate(n, term):
     >>> [type(x).__name__ for x in ast.parse(inspect.getsource(summation_using_accumulate)).body[0].body]
     ['Expr', 'Return']
     """
-    return ____
+    return accumulate(add, 0, n, term)
 
 
 def product_using_accumulate(n, term):
@@ -83,7 +95,7 @@ def product_using_accumulate(n, term):
     >>> [type(x).__name__ for x in ast.parse(inspect.getsource(product_using_accumulate)).body[0].body]
     ['Expr', 'Return']
     """
-    return ____
+    return accumulate(mul, 1, n, term)
 
 
 def make_repeater(f, n):
@@ -100,4 +112,18 @@ def make_repeater(f, n):
     390625
     """
     "*** YOUR CODE HERE ***"
+    def repeater(x):
+        k=1
+        while k<=n:
+            x=f(x)
+            k=k+1
+        return x
+    return repeater
+print(make_repeater(square,2)(5))
 
+def qiantao(f,g):
+    def h(x):
+        return f(g(x))
+    return h
+
+print(qiantao(square,triple)(2))

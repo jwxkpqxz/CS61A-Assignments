@@ -13,11 +13,10 @@ def a_plus_abs_b(a, b):
     3
     """
     if b < 0:
-        f = _____
+        f = a - b
     else:
-        f = _____
-    return f(a, b)
-
+        f = a + b
+    return f
 def a_plus_abs_b_syntax_check():
     """Check that you didn't change the return statement of a_plus_abs_b.
 
@@ -42,7 +41,8 @@ def two_of_three(i, j, k):
     >>> two_of_three(5, 5, 5)
     50
     """
-    return _____
+    return i**3+j**3+k**3-max(i,j,k)**3
+print(two_of_three(1,2,3))
 
 def two_of_three_syntax_check():
     """Check that your two_of_three code consists of nothing but a return statement.
@@ -56,6 +56,8 @@ def two_of_three_syntax_check():
 
 
 def largest_factor(n):
+
+
     """Return the largest factor of n that is smaller than n.
 
     >>> largest_factor(15) # factors are 1, 3, 5
@@ -66,10 +68,27 @@ def largest_factor(n):
     1
     """
     "*** YOUR CODE HERE ***"
-
-
+    for i in range(n-1,1,-1):
+        factor=1
+        if n%i==0:
+            factor=i
+            break
+    return factor
+print(largest_factor(40))
 def hailstone(n):
-    """Print the hailstone sequence starting at n and return its
+    print(n)
+    k=1
+    while(n!=1):
+        k=k+1
+        if n%2==0:
+            n=n//2
+        else:
+            n=n*3+1
+        print(n)
+    return k
+a=hailstone(10)
+print(a)
+"""Print the hailstone sequence starting at n and return its
     length.
 
     >>> a = hailstone(10)
@@ -87,5 +106,12 @@ def hailstone(n):
     >>> b
     1
     """
-    "*** YOUR CODE HERE ***"
-
+"*** YOUR CODE HERE ***"
+def unique_digits(n):
+    ls=[]
+    for i in range(len(str(n))):
+        ls.append(int(str(n)[i]))
+    s=set(ls)
+    print(s)
+    return len(s)
+print(unique_digits(123456666644553))
